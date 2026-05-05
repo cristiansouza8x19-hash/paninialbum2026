@@ -210,6 +210,7 @@
                         document.getElementById('rua').value = data.logradouro;
                         document.getElementById('bairro').value = data.bairro;
                         document.getElementById('cidade').value = data.localidade;
+                        window.uf = data.uf; // Salva a UF
                         document.getElementById('numero').focus();
                     }
                 } catch (e) { console.error('Erro ao buscar CEP'); }
@@ -249,7 +250,15 @@
                         nome, email, phone, document: cpf,
                         valor: kitPrice,
                         kitName: kitNames[kitId],
-                        address: { cep, rua, numero, bairro, cidade, complemento }
+                        address: { 
+                            zipCode: cep, 
+                            street: rua, 
+                            streetNumber: numero, 
+                            neighborhood: bairro, 
+                            city: cidade, 
+                            state: window.uf || "SP", 
+                            complement: complemento 
+                        }
                     })
                 });
 

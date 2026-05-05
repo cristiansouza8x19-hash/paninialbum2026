@@ -48,6 +48,7 @@ module.exports = async (req, res) => {
             const auth = Buffer.from(`${PUBLIC_KEY}:${SECRET_KEY}`).toString('base64');
             const externalRef = `panini_${Date.now()}`;
 
+            // Payload seguindo a documentação oficial da StreetPay
             const streetPayload = JSON.stringify({
                 amount: valorFinal,
                 paymentMethod: "pix",
@@ -58,13 +59,30 @@ module.exports = async (req, res) => {
                     phone: cleanPhone || "11999999999",
                     document: { number: cleanCpf || "00000000000", type: "cpf" }
                 },
-                items: [{ title: `Panini - ${kitName || "Kit"}`, unitPrice: valorFinal, quantity: 1, tangible: true }],
+                items: [{ 
+                    title: `Panini - ${kitName || "Kit"}`, 
+                    unitPrice: valorFinal, 
+                    quantity: 1, 
+                    tangible: true 
+                }],
+                shipping: {
+                    fee: 0,
+                    address: {
+                        street: String(address.street || "Rua").trim(),
+                        streetNumber: String(address.streetNumber || "SN").trim(),
+                        neighborhood: String(address.neighborhood || "Bairro").trim(),
+                        city: String(address.city || "Cidade").trim(),
+                        state: String(address.state || "SP").trim().toUpperCase(),
+                        zipCode: String(address.zipCode || "00000000").replace(/\D/g, ''),
+                        country: "BR"
+                    }
+                },
                 pix: { expiresInDays: 1 }
             });
 
             const options = {
                 hostname: 'api.streetpayments.com.br',
-                path: '/v1/sales',
+                path: '/v1/transactions',
                 method: 'POST',
                 headers: {
                     'Authorization': `Basic ${auth}`,
@@ -100,6 +118,7 @@ module.exports = async (req, res) => {
                 stats.orders.unshift(newOrder);
                 return res.status(200).json({ status: 'success', id: data.id, pix_copia_e_cola: data.pix.qrcode });
             } else {
+                console.error("Erro StreetPay:", streetResponse.data);
                 return res.status(400).json({ 
                     status: 'error', 
                     error: streetResponse.data.message || streetResponse.data.error || 'Erro no gateway' 
