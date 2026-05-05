@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Álbum Oficial Copa 2026 Panini | Pré-venda com até 85% OFF</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '3059682304380413');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=3059682304380413&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+    <style>
+        :root {
+            --panini-red: #E20613;
+            --green-gradient: linear-gradient(180deg, #064E3B 0%, #065F46 100%);
+            --text-dark: #111827;
+            --text-gray: #4B5563;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background-color: #F3F4F6; color: var(--text-dark); padding-bottom: 80px; }
+
+        /* Header Bar */
+        .top-nav {
+            background: white;
+            padding: 12px 0;
+            border-bottom: 1px solid #E5E7EB;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 15px;
+        }
+        .logo { height: 28px; }
+        .nav-info { display: flex; gap: 15px; align-items: center; }
+        .nav-item { font-size: 0.8rem; font-weight: 700; display: flex; align-items: center; gap: 5px; }
+        .stock-badge { background: #FFEDD5; color: #9A3412; padding: 5px 12px; border-radius: 20px; font-size: 0.7rem; border: 1px solid #FED7AA; }
+
+        /* Hero Section */
+        .hero {
+            background: var(--green-gradient);
+            color: white;
+            padding: 50px 15px 70px;
+            text-align: center;
+        }
+        .hero h1 { font-size: 2rem; font-weight: 800; margin-bottom: 12px; text-transform: uppercase; line-height: 1.1; letter-spacing: -0.5px; }
+        .hero p { font-size: 1rem; opacity: 0.9; margin-bottom: 0; font-weight: 400; }
+
+        /* Product Section */
+        .product-section {
+            max-width: 800px;
+            margin: -40px auto 40px;
+            padding: 0 15px;
+        }
+        .kit-list { display: flex; flex-direction: column; gap: 12px; }
+        .kit-item {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: 0.2s;
+            position: relative;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
+        }
+        .kit-item:hover { border-color: #10B981; }
+        .kit-item.active { border-color: #10B981; background: #F0FDF4; }
+        
+        .kit-radio { width: 22px; height: 22px; border: 2px solid #D1D5DB; border-radius: 50%; position: relative; flex-shrink: 0; }
+        .kit-item.active .kit-radio { border-color: #10B981; }
+        .kit-item.active .kit-radio::after { content: ''; width: 12px; height: 12px; background: #10B981; border-radius: 50%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+
+        .kit-img { width: 85px; height: 85px; object-fit: contain; }
+        .kit-info { flex-grow: 1; }
+        .kit-title { font-weight: 800; font-size: 1.1rem; margin-bottom: 2px; }
+        .kit-desc { font-size: 0.8rem; color: var(--text-gray); font-weight: 500; }
+        
+        .kit-price-box { text-align: right; }
+        .kit-old-price { font-size: 0.8rem; color: #9CA3AF; text-decoration: line-through; margin-bottom: 2px; }
+        .kit-new-price { font-size: 1.4rem; font-weight: 900; color: #065F46; line-height: 1; }
+
+        .tag-off { background: #DC2626; color: white; font-size: 0.7rem; padding: 3px 8px; border-radius: 4px; font-weight: 800; position: absolute; top: 12px; right: 15px; }
+        .tag-shipping { color: #10B981; font-size: 0.75rem; font-weight: 700; margin-top: 5px; }
+        .tag-popular { position: absolute; top: -11px; left: 20px; background: #065F46; color: white; font-size: 0.7rem; font-weight: 800; padding: 4px 12px; border-radius: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+
+        /* CTA Button */
+        .btn-buy {
+            background: #10B981;
+            color: white;
+            width: 100%;
+            padding: 20px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            font-weight: 900;
+            margin-top: 25px;
+            cursor: pointer;
+            box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.3);
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
+        .btn-buy:hover { background: #059669; transform: translateY(-2px); }
+
+        /* Review Section */
+        .reviews { max-width: 800px; margin: 40px auto; padding: 0 15px; }
+        .review-item { background: white; padding: 20px; border-radius: 16px; margin-bottom: 12px; border: 1px solid #E5E7EB; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); }
+        .review-header { display: flex; justify-content: space-between; margin-bottom: 10px; align-items: center; }
+        .review-author { font-weight: 700; font-size: 1rem; color: #111827; }
+        .stars { color: #FBBF24; font-size: 0.9rem; letter-spacing: 2px; }
+        .review-text { font-size: 0.9rem; color: #4B5563; line-height: 1.5; font-weight: 400; }
+
+        /* Footer */
+        footer { background: white; padding: 50px 15px; text-align: center; border-top: 1px solid #E5E7EB; }
+        .footer-logo { height: 30px; margin-bottom: 25px; opacity: 0.4; filter: grayscale(1); }
+        .footer-text { font-size: 0.8rem; color: #9CA3AF; line-height: 1.6; }
+        .payment-icons { margin: 25px 0; opacity: 0.6; height: 25px; }
+
+        /* Sticky CTA Mobile */
+        .sticky-cta {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            padding: 12px 20px;
+            box-shadow: 0 -10px 20px rgba(0,0,0,0.05);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid #E5E7EB;
+        }
+        .sticky-price-info { display: flex; flex-direction: column; }
+        .sticky-total { font-weight: 900; font-size: 1.3rem; color: #065F46; }
+        .sticky-label { font-size: 0.7rem; color: #6B7280; font-weight: 600; text-transform: uppercase; }
+        .btn-sticky { background: #10B981; color: white; padding: 12px 25px; border-radius: 8px; font-weight: 800; text-decoration: none; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+
+    <div class="top-nav">
+        <div class="nav-container">
+            <img src="assets/logo-panini.png" alt="Panini" class="logo">
+            <div class="nav-info">
+                <div class="nav-item">⏱️ <span id="header-timer">08:42</span></div>
+                <div class="nav-item stock-badge">Restam: 126 un 🔥</div>
+            </div>
+        </div>
+    </div>
+
+    <div style="background: #ECFDF5; color: #065F46; text-align: center; padding: 10px; font-size: 0.75rem; font-weight: 700; border-bottom: 1px solid #D1FAE5;">
+        🚚 FRETE GRÁTIS PARA TODO O BRASIL EM COMPRAS ACIMA DE R$ 50,00
+    </div>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Álbum Oficial EUA • Canadá • México <br> COPA 2026</h1>
+            <p>Garanta sua pré-venda exclusiva. Tiragem limitada de 5.000 unidades.</p>
+        </div>
+    </section>
+
+    <div class="product-section">
+        <div class="kit-list">
+            <!-- Kit 1 -->
+            <div class="kit-item" onclick="selectKit(this, 3999, 'basico', 'Kit Básico')">
+                <div class="kit-radio"></div>
+                <img src="assets/product-kit-hero.png" class="kit-img">
+                <div class="kit-info">
+                    <div class="kit-title">Kit Básico</div>
+                    <div class="kit-desc">1 Álbum Capa Mole + 10 Envelopes (50 figurinhas)</div>
+                </div>
+                <div class="kit-price-box">
+                    <div class="kit-old-price">R$ 89,90</div>
+                    <div class="kit-new-price">R$ 39,99</div>
+                    <div class="tag-off">-53%</div>
+                </div>
+            </div>
+
+            <!-- Kit 2 -->
+            <div class="kit-item" onclick="selectKit(this, 5999, 'iniciante', 'Kit Iniciante')">
+                <div class="kit-radio"></div>
+                <img src="assets/product-kit-hero.png" class="kit-img">
+                <div class="kit-info">
+                    <div class="kit-title">Kit Iniciante</div>
+                    <div class="kit-desc">1 Álbum + 30 Envelopes (150 figurinhas)</div>
+                    <div class="tag-shipping">FRETE GRÁTIS ✅</div>
+                </div>
+                <div class="kit-price-box">
+                    <div class="kit-old-price">R$ 147,00</div>
+                    <div class="kit-new-price">R$ 59,99</div>
+                    <div class="tag-off">-60%</div>
+                </div>
+            </div>
+
+            <!-- Kit 3 -->
+            <div class="kit-item active" onclick="selectKit(this, 9799, 'campeao', 'Kit Campeão')">
+                <div class="tag-popular">MAIS ESCOLHIDO</div>
+                <div class="kit-radio"></div>
+                <img src="assets/product-kit-hero.png" class="kit-img">
+                <div class="kit-info">
+                    <div class="kit-title">Kit Campeão</div>
+                    <div class="kit-desc">1 Álbum Capa Dura + 60 Envelopes (300 figurinhas)</div>
+                    <div class="tag-shipping">FRETE GRÁTIS ✅</div>
+                </div>
+                <div class="kit-price-box">
+                    <div class="kit-old-price">R$ 297,00</div>
+                    <div class="kit-new-price">R$ 97,99</div>
+                    <div class="tag-off">-67%</div>
+                </div>
+            </div>
+
+            <!-- Kit 4 -->
+            <div class="kit-item" onclick="selectKit(this, 13799, 'colecionador', 'Kit Colecionador')">
+                <div class="kit-radio"></div>
+                <img src="assets/product-kit-hero.png" class="kit-img">
+                <div class="kit-info">
+                    <div class="kit-title">Kit Colecionador</div>
+                    <div class="kit-desc">1 Álbum Capa Dura + 90 Envelopes (450 figurinhas)</div>
+                    <div class="tag-shipping">FRETE GRÁTIS ✅</div>
+                </div>
+                <div class="kit-price-box">
+                    <div class="kit-old-price">R$ 497,00</div>
+                    <div class="kit-new-price">R$ 137,99</div>
+                    <div class="tag-off">-72%</div>
+                </div>
+            </div>
+
+            <!-- Kit 5 - GOLDEN -->
+            <div class="kit-item" onclick="selectKit(this, 19999, 'golden', 'Kit Golden')" style="border-color: #FBBF24; background: #FFFBEB;">
+                <div class="tag-popular" style="background: #D97706;">EDIÇÃO LIMITADA 💎</div>
+                <div class="kit-radio" style="border-color: #D97706;"></div>
+                <img src="assets/kit-golden.webp" class="kit-img" style="filter: drop-shadow(0 0 10px rgba(217, 119, 6, 0.3));">
+                <div class="kit-info">
+                    <div class="kit-title" style="color: #92400E;">Kit Golden</div>
+                    <div class="kit-desc">Capa Dura Ouro Dourado + 50 Pacotes</div>
+                    <div class="tag-shipping" style="color: #D97706;">FRETE GRÁTIS ✅</div>
+                </div>
+                <div class="kit-price-box">
+                    <div class="kit-old-price">R$ 697,00</div>
+                    <div class="kit-new-price" style="color: #D97706;">R$ 199,99</div>
+                    <div class="tag-off" style="background: #D97706;">-71%</div>
+                </div>
+            </div>
+        </div>
+
+        <button class="btn-buy" onclick="goToCheckout()">RESGATAR MEU KIT AGORA</button>
+        
+        <p style="text-align: center; font-size: 0.75rem; color: #9CA3AF; margin-top: 15px; font-weight: 500;">
+            🔒 Compra Única por CPF. Restam apenas 126 unidades.
+        </p>
+    </div>
+
+    <section class="trust-features">
+        <div class="container">
+            <h2 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 2rem; text-align: center;">POR QUE GARANTIR SEU KIT AGORA?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="check-icon">✓</div>
+                    <strong>Descontos de até 85%</strong>
+                    <p>Economia real na pré-venda</p>
+                </div>
+                <div class="feature-card">
+                    <div class="check-icon">✓</div>
+                    <strong>Entrega prioritária</strong>
+                    <p>Receba antes do lançamento oficial</p>
+                </div>
+                <div class="feature-card">
+                    <div class="check-icon">✓</div>
+                    <strong>Produto original Panini</strong>
+                    <p>Álbum oficial FIFA 100% autêntico</p>
+                </div>
+                <div class="feature-card">
+                    <div class="check-icon">✓</div>
+                    <strong>Frete Grátis</strong>
+                    <p>Entrega grátis para todo o Brasil</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 50px; margin-bottom: 30px;">
+                <h2 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 5px;">O QUE DIZEM QUEM JÁ COMPROU</h2>
+                <p style="color: #6B7280; font-weight: 500;">Mais de 2.000 clientes já garantiram o álbum</p>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .trust-features { padding: 40px 0; background: white; }
+        .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .feature-card { background: #F9FAFB; padding: 25px 15px; border-radius: 12px; text-align: center; }
+        .check-icon { color: #6B7280; margin-bottom: 10px; font-size: 1.2rem; }
+        .feature-card strong { display: block; font-size: 1rem; font-weight: 800; margin-bottom: 4px; }
+        .feature-card p { font-size: 0.8rem; color: #6B7280; }
+        
+        @media (max-width: 600px) {
+            .features-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+
+    <section class="reviews">
+        <div class="review-item">
+            <div class="review-header">
+                <span class="review-author">Carlos Eduardo</span>
+                <span class="stars">★★★★★</span>
+            </div>
+            <p class="review-text">"Excelente kit! Chegou muito rápido aqui no Rio de Janeiro. O álbum de capa dura é lindíssimo e as figurinhas vieram todas lacradas. Vale muito a pena o investimento para quem gosta de colecionar."</p>
+        </div>
+
+        <div class="review-item">
+            <div class="review-header">
+                <span class="review-author">Juliana Costa</span>
+                <span class="stars">★★★★★</span>
+            </div>
+            <p class="review-text">"Comprei o kit iniciante para o meu filho e ele amou. Entrega garantida e frete grátis conforme o anúncio. Recomendo!"</p>
+        </div>
+
+        <div class="review-item">
+            <div class="review-header">
+                <span class="review-author">Marcos Vinícius</span>
+                <span class="stars">★★★★★</span>
+            </div>
+            <p class="review-text">"Aproveitei a promoção de pré-venda e não me arrependi. Preço imbatível e o suporte me atendeu super bem quando perguntei sobre o rastreio."</p>
+        </div>
+
+        <div class="review-item">
+            <div class="review-header">
+                <span class="review-author">Roberto Lins</span>
+                <span class="stars">★★★★★</span>
+            </div>
+            <p class="review-text">"Kit colecionador é o melhor. Já comecei a colar e a qualidade Panini de sempre. Nota 10!"</p>
+        </div>
+    </section>
+
+    <section class="faq">
+        <div class="container">
+            <h2 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 30px; text-align: center; text-transform: uppercase;">Dúvidas Frequentes</h2>
+            
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        Quando meu pedido será entregue?
+                        <span class="faq-arrow">^</span>
+                    </div>
+                    <div class="faq-answer">
+                        Os pedidos da pré-venda têm entrega prioritária. Após confirmação do pagamento, despachamos em até 5 dias úteis e o prazo de entrega varia de 5 a 12 dias úteis conforme sua região.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        As figurinhas e o álbum são originais?
+                        <span class="faq-arrow">^</span>
+                    </div>
+                    <div class="faq-answer">
+                        Sim. Trabalhamos exclusivamente com produtos oficiais Panini, lacrados de fábrica, com selo de autenticidade da FIFA World Cup 2026.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        Posso escolher quais figurinhas vou receber?
+                        <span class="faq-arrow">^</span>
+                    </div>
+                    <div class="faq-answer">
+                        Não. Os pacotes são lacrados e o conteúdo é aleatório, exatamente como funciona qualquer coleção oficial Panini.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        E se eu receber figurinhas repetidas?
+                        <span class="faq-arrow">^</span>
+                    </div>
+                    <div class="faq-answer">
+                        Repetidas fazem parte da experiência da coleção. Quanto maior o kit, menor a proporção de repetidas em relação ao total.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        O frete é realmente grátis?
+                        <span class="faq-arrow">^</span>
+                    </div>
+                    <div class="faq-answer">
+                        Sim. Todos os kits têm frete grátis para todo o Brasil, sem valor mínimo de pedido.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        Quais formas de pagamento são aceitas?
+                        <span class="faq-arrow">^</span>
+                    </div>
+                    <div class="faq-answer">
+                        Aceitamos PIX (com desconto), cartão de crédito em até 12x e boleto bancário.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        Posso cancelar meu pedido?
+                        <span class="faq-arrow">^</span>
+                    </div>
+                    <div class="faq-answer">
+                        Sim, você pode cancelar em até 7 dias após a compra, conforme o Código de Defesa do Consumidor.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .faq { padding: 50px 0; background: #F3F4F6; }
+        .faq-list { max-width: 850px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px; }
+        .faq-item { background: white; border-radius: 12px; border: 1px solid #E5E7EB; overflow: hidden; }
+        .faq-question { padding: 20px; font-weight: 700; font-size: 1rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; color: #111827; }
+        .faq-answer { padding: 0 20px 20px; color: #6B7280; font-size: 0.9rem; line-height: 1.5; display: none; }
+        .faq-item.active .faq-answer { display: block; }
+        .faq-arrow { font-family: monospace; transform: rotate(180deg); transition: 0.3s; display: inline-block; font-size: 1rem; color: #9CA3AF; }
+        .faq-item.active .faq-arrow { transform: rotate(0deg); }
+    </style>
+
+    <script>
+        function toggleFaq(element) {
+            const item = element.parentElement;
+            item.classList.toggle('active');
+        }
+    </script>
+
+    <footer>
+        <img src="assets/logo-panini.png" class="footer-logo">
+        <p class="footer-text">
+            © 2024 Panini Brasil Ltda. CNPJ: 58.732.358/0001-00 <br>
+            Alameda Caiapós, 425 - Tamboré, Barueri - SP, 06460-110 <br>
+            Este site é um canal de vendas oficial autorizado Panini Group.
+        </p>
+        <div class="payment-icons">
+            <img src="https://logodownload.org/wp-content/uploads/2019/09/pix-logo-2.png" height="15">
+            <img src="https://logodownload.org/wp-content/uploads/2014/10/correios-logo-2.png" height="15" style="margin-left: 20px;">
+        </div>
+    </footer>
+
+    <div class="sticky-cta">
+        <div class="sticky-price-info">
+            <span class="sticky-label">Total do Kit</span>
+            <span class="sticky-total" id="sticky-price">R$ 97,99</span>
+        </div>
+        <a href="javascript:void(0)" onclick="goToCheckout()" class="btn-sticky">RESGATAR AGORA</a>
+    </div>
+
+    <script>
+        let selectedKit = { id: 'campeao', price: 9799, name: 'Kit Campeão' };
+
+        function selectKit(element, price, id, name) {
+            document.querySelectorAll('.kit-item').forEach(item => item.classList.remove('active'));
+            element.classList.add('active');
+            selectedKit = { id, price, name };
+            document.getElementById('sticky-price').textContent = 'R$ ' + (price / 100).toFixed(2).replace('.', ',');
+        }
+
+        function goToCheckout() {
+            window.location.href = `checkout.html?kit=${selectedKit.id}&price=${selectedKit.price}`;
+        }
+
+        // Timer
+        function startTimer(duration, display) {
+            var timer = duration, minutes, seconds;
+            setInterval(function () {
+                minutes = parseInt(timer / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+                display.textContent = minutes + ":" + seconds;
+                if (--timer < 0) timer = duration;
+            }, 1000);
+        }
+
+        window.onload = function () {
+            startTimer(60 * 8 + 42, document.querySelector('#header-timer'));
+            fetch('/api?action=trackVisit').catch(e => {});
+        };
+    </script>
+</body>
+</html>
