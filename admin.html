@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Admin | Panini Copa 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary: #065F46; --bg: #F3F4F6; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background: var(--bg); color: #1F2937; padding: 2rem; }
+        .container { max-width: 1100px; margin: 0 auto; display: none; } /* Hidden until login */
+        
+        /* Login Overlay */
+        #login-overlay { position: fixed; inset: 0; background: var(--bg); display: flex; align-items: center; justify-content: center; z-index: 2000; }
+        .login-card { background: white; padding: 2.5rem; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 100%; max-width: 400px; text-align: center; }
+        .login-card h2 { margin-bottom: 1.5rem; color: var(--primary); }
+        .login-card input { width: 100%; padding: 12px; border: 1px solid #E5E7EB; border-radius: 8px; margin-bottom: 1rem; font-size: 1rem; }
+        .login-card button { width: 100%; padding: 12px; background: var(--primary); color: white; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; }
+
+        header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
+        .stat-card { background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); text-align: center; }
+        .stat-card h3 { font-size: 0.8rem; color: #6B7280; text-transform: uppercase; margin-bottom: 0.5rem; }
+        .stat-card p { font-size: 1.8rem; font-weight: 800; color: var(--primary); }
+
+        .table-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        table { width: 100%; border-collapse: collapse; }
+        th { background: #F9FAFB; padding: 1rem; text-align: left; font-size: 0.8rem; color: #6B7280; border-bottom: 1px solid #E5E7EB; }
+        td { padding: 1rem; border-bottom: 1px solid #F3F4F6; font-size: 0.9rem; }
+        
+        .status-badge { padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 700; }
+        .status-pago { background: #D1FAE5; color: #065F46; }
+        .status-pendente { background: #FEF3C7; color: #92400E; }
+        
+        .btn-refresh { background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; }
+        
+        .address-box { font-size: 0.75rem; color: #6B7280; line-height: 1.4; margin-top: 5px; background: #F9FAFB; padding: 5px; border-radius: 4px; }
+    </style>
+</head>
+<body>
+
+    <div id="login-overlay">
+        <div class="login-card">
+            <h2>Acesso Restrito</h2>
+            <input type="text" id="admin-user" placeholder="Usuário">
+            <input type="password" id="admin-pass" placeholder="Senha">
+            <button onclick="attemptLogin()">ENTRAR</button>
+        </div>
+    </div>
+
+    <div class="container" id="admin-content">
+        <header>
+            <h1>Painel Admin Panini</h1>
+            <button class="btn-refresh" onclick="loadStats()">🔄 Atualizar Dados</button>
+        </header>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>Visitas</h3>
+                <p id="stat-visits">0</p>
+            </div>
+            <div class="stat-card">
+                <h3>Checkouts</h3>
+                <p id="stat-checkouts">0</p>
+            </div>
+            <div class="stat-card">
+                <h3>Vendas Pagas</h3>
+                <p id="stat-sales">0</p>
+            </div>
+            <div class="stat-card">
+                <h3>Conversão</h3>
+                <p id="stat-conv">0%</p>
+            </div>
+        </div>
+
+        <div class="table-card">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Cliente</th>
+                        <th>Produto</th>
+                        <th>Valor</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="orders-list"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        let adminPassword = "";
+
+        async function attemptLogin() {
+            const user = document.getElementById('admin-user').value;
+            const pass = document.getElementById('admin-pass').value;
+
+            if (user !== 'tiotio') {
+                alert("Usuário incorreto!");
+                return;
+            }
+
+            // Se estiver rodando localmente (file://), permite entrar com a senha sem consultar o servidor
+            if (window.location.protocol === 'file:') {
+                if (user === 'tiotio' && pass === 'criss123') {
+                    adminPassword = pass;
+                    document.getElementById('login-overlay').style.display = 'none';
+                    document.getElementById('admin-content').style.display = 'block';
+                    alert("Modo de Teste Local: Os dados não aparecerão até você fazer o deploy.");
+                    return;
+                } else {
+                    alert("Credenciais incorretas!");
+                    return;
+                }
+            }
+
+            try {
+                const res = await fetch('/api?action=adminData', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ password: pass })
+                });
+                
+                if (res.ok) {
+                    adminPassword = pass;
+                    document.getElementById('login-overlay').style.display = 'none';
+                    document.getElementById('admin-content').style.display = 'block';
+                    loadStats();
+                } else {
+                    alert("Senha incorreta!");
+                }
+            } catch (e) {
+                alert("Erro ao conectar com o servidor.");
+            }
+        }
+
+        async function loadStats() {
+            if (!adminPassword) return;
+
+            try {
+                const res = await fetch('/api?action=adminData', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ password: adminPassword })
+                });
+                const data = await res.json();
+                
+                document.getElementById('stat-visits').textContent = data.visits || 0;
+                document.getElementById('stat-checkouts').textContent = data.checkouts || 0;
+                document.getElementById('stat-sales').textContent = data.sales || 0;
+                
+                const conv = data.visits > 0 ? ((data.sales / data.visits) * 100).toFixed(1) : 0;
+                document.getElementById('stat-conv').textContent = conv + '%';
+
+                const list = document.getElementById('orders-list');
+                list.innerHTML = '';
+
+                data.orders.forEach(order => {
+                    const tr = document.createElement('tr');
+                    let addressHtml = order.address ? `
+                        <div class="address-box">
+                            📍 ${order.address.rua}, ${order.address.numero} - ${order.address.bairro}<br>
+                            ${order.address.cidade} | CEP: ${order.address.cep}
+                        </div>
+                    ` : '';
+
+                    tr.innerHTML = `
+                        <td>${order.date || ''}</td>
+                        <td>
+                            <strong>${order.nome}</strong><br>
+                            <span style="font-size: 0.8rem; color: #9CA3AF;">${order.email}</span>
+                            ${addressHtml}
+                        </td>
+                        <td>${order.product}</td>
+                        <td>R$ ${order.amount}</td>
+                        <td><span class="status-badge ${order.status === 'PAGO' ? 'status-pago' : 'status-pendente'}">${order.status}</span></td>
+                    `;
+                    list.appendChild(tr);
+                });
+            } catch (e) {
+                console.error("Erro ao carregar estatísticas");
+            }
+        }
+
+        setInterval(loadStats, 30000);
+    </script>
+</body>
+</html>
